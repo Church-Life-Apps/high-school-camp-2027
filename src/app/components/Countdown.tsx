@@ -46,7 +46,7 @@ export default function Countdown() {
                                 : String(value).padStart(2, "0")}
                         </div>
 
-                        <span className="mt-2 whitespace-nowrap text-[8px] font-bold uppercase tracking-wider text-amber-400 sm:text-[10px] sm:tracking-[0.2em] md:text-xs">
+                        <span className="mt-2 whitespace-nowrap text-[8px] font-bold uppercase tracking-wider text-hsc-hot-pink-400 sm:text-[10px] sm:tracking-[0.2em] md:text-xs">
                             {label}
                         </span>
                     </div>
