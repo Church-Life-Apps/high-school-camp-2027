@@ -1,5 +1,5 @@
 import Image from "next/image";
-import heroImage from "../../../public/images/hsc2024field.jpg";
+import heroImage from "../../../public/images/hsc2024field.png";
 
 export default function Hero() {
   return (
