@@ -1,16 +1,30 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Syncopate, Ubuntu_Sans, Ubuntu_Sans_Mono, Unbounded } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const ubuntuSans = Ubuntu_Sans({
+  variable: "--font-ubuntu-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const ubuntuMono = Ubuntu_Sans_Mono({
+  variable: "--font-ubuntu-mono",
   subsets: ["latin"],
+});
+
+// Stand-in for Bacalar (Ultra Expanded / Expanded)
+const unbounded = Unbounded({
+  variable: "--font-unbounded",
+  subsets: ["latin"],
+});
+
+// Stand-in for Comba (Bold Ultra Wide)
+const syncopate = Syncopate({
+  variable: "--font-syncopate",
+  subsets: ["latin"],
+  weight: "700",
 });
 
 export const metadata: Metadata = {
@@ -22,14 +36,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${ubuntuSans.variable} ${ubuntuMono.variable} ${unbounded.variable} ${syncopate.variable} antialiased`}
     >
-
-      <body className="min-h-full flex flex-col">
-        <Header />
-        <main>
-          {children}
-        </main>
+      <body className="overflow-x-clip font-sans">
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

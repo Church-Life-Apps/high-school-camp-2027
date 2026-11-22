@@ -1,93 +1,94 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: Helvetica, Arial, sans-serif;
-  --font-mono: var(--font-geist-mono);
+  /* Fonts — the --font-ubuntu-* variables are set by next/font in layout.tsx */
+  --font-sans: var(--font-ubuntu-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-ubuntu-mono), ui-monospace, monospace;
 
-  --animate-marquee: marquee 35s linear infinite;
+  /* Colors — from docs/layout.md §11 */
+  --color-hsc-cream: #f1eeec;
+  --color-hsc-ink: #0f161b;
+  --color-hsc-pink: #ff307c;
+  --color-hsc-pink-dark: #c0225c;
+  --color-hsc-electric: #3449e4;
+  --color-hsc-electric-ink: #162adf;
+  --color-hsc-electric-tag: #5167ea;
+  --color-hsc-ice: #c8e2ff;
+  --color-hsc-navy: #000d83;
+  --color-hsc-navy-deep: #000a66;
+  --color-hsc-royal: #1f30c8;
+  --color-hsc-bright: #2d47fd;
+  --color-hsc-link: #bac2ff;
+  --color-hsc-muted: #7384ff;
+  --color-hsc-placeholder: #606eea;
+  --color-hsc-cyan: #89fff9;
+
+  /* Banner ticker */
+  --animate-marquee: marquee 45s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 60s linear infinite;
 
   @keyframes marquee {
     from {
       transform: translateX(0);
     }
-
     to {
       transform: translateX(-50%);
     }
   }
 
-  --color-hsc-navy: #020D7E;
-  --color-hsc-blue: #3346F3;
-  --color-hsc-accent: #1B29D6;
-  --color-hsc-hot-pink: #FF2F7B;
-
-
-  /* HSC Navy */
-  --color-hsc-navy-50: #E6E7F2;
-  --color-hsc-navy-100: #B3B8D9;
-  --color-hsc-navy-200: #8088BF;
-  --color-hsc-navy-300: #4D59A5;
-  --color-hsc-navy-400: #1A2A8B;
-  --color-hsc-navy-500: #020D7E;
-  --color-hsc-navy-600: #020A65;
-  --color-hsc-navy-700: #01084C;
-  --color-hsc-navy-800: #010533;
-  --color-hsc-navy-900: #000219;
-
-  /* HSC Blue */
-  --color-hsc-blue-50: #EBEDFE;
-  --color-hsc-blue-100: #C3C9FC;
-  --color-hsc-blue-200: #9BA5FA;
-  --color-hsc-blue-300: #6474F7;
-  --color-hsc-blue-400: #4B5DF5;
-  --color-hsc-blue-500: #3346F3;
-  --color-hsc-blue-600: #2939D1;
-  --color-hsc-blue-700: #1F2CA8;
-  --color-hsc-blue-800: #151F7F;
-  --color-hsc-blue-900: #0B1256;
-
-  /* HSC Accent */
-  --color-hsc-accent-50: #E8E9FA;
-  --color-hsc-accent-100: #BFC3F3;
-  --color-hsc-accent-200: #969DED;
-  --color-hsc-accent-300: #6D77E6;
-  --color-hsc-accent-400: #4351DE;
-  --color-hsc-accent-500: #1B29D6;
-  --color-hsc-accent-600: #1622B5;
-  --color-hsc-accent-700: #111B94;
-  --color-hsc-accent-800: #0D146F;
-  --color-hsc-accent-900: #080D4A;
-
-  /* HSC Hot Pink */
-  --color-hsc-hot-pink-50: #FFEAF1;
-  --color-hsc-hot-pink-100: #FFC0D5;
-  --color-hsc-hot-pink-200: #FF96B9;
-  --color-hsc-hot-pink-300: #FF6D9D;
-  --color-hsc-hot-pink-400: #FF4989;
-  --color-hsc-hot-pink-500: #FF2F7B;
-  --color-hsc-hot-pink-600: #D92769;
-  --color-hsc-hot-pink-700: #B32157;
-  --color-hsc-hot-pink-800: #8C1B45;
-  --color-hsc-hot-pink-900: #661433;
-
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @keyframes marquee-reverse {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
   }
 }
 
+/*
+ * Display fonts. These are STAND-INS until the licensed files arrive:
+ *   Bacalar Ultra Expanded / Expanded -> Unbounded
+ *   Comba Bold Ultra Wide             -> Syncopate Bold
+ * To swap, load the real files with next/font/local in layout.tsx and
+ * point these utilities at the new CSS variables.
+ */
+@utility font-display {
+  font-family: var(--font-unbounded), sans-serif;
+  font-weight: 700;
+}
+
+@utility font-display-expanded {
+  font-family: var(--font-unbounded), sans-serif;
+  font-weight: 600;
+}
+
+@utility font-logo {
+  font-family: var(--font-syncopate), sans-serif;
+  font-weight: 700;
+}
+
+/* Side padding: 160px at the 1728px design width, scaling down to 24px. */
+@utility px-page {
+  padding-inline: clamp(1.5rem, 9.26vw, 10rem);
+}
+
+/* Hero image overlay (layout.md §3) */
+@utility bg-hero-fade {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(15 22 27 / 0) 50%,
+    rgb(15 22 27 / 0.2) 75%,
+    rgb(15 22 27 / 0.8) 100%
+  );
+}
+
+/* Info section background (layout.md §5) */
+@utility bg-info-gradient {
+  background-image: linear-gradient(251deg, #1b2dca 0%, #000d83 100%);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Helvetica, Arial, sans-serif;
+  background: var(--color-hsc-cream);
+  color: var(--color-hsc-ink);
 }
